@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Time</title>
+</head>
+<body>
+    <button onclick="showDate()">Show Date</button>
+<p id="dateDisplay"></p><br>
+
+<button onclick="showTime()">Show Time</button>
+<p id="timeDisplay"></p>
+
+<script>
+    function showDate() {
+    let today = new Date();
+    let date = today.getDate();
+    let month = today.getMonth(); 
+    let year = today.getFullYear();
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", 
+                        "July", "August", "September", "October", "November", "December"];
+
+    let formattedDate = date + '/' + monthNames[month] + '/' + year;
+
+    document.getElementById("dateDisplay").innerText = formattedDate;
+}
+function showTime() {
+    let today = new Date();
+    let formattedDate = today.toString();
+    document.getElementById("timeDisplay").innerText = formattedDate;
+}
+</script>
+</body>
+</html>

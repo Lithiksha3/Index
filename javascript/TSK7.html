@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Animation</title>
+    <style>
+        .train-container {
+            position: relative;
+            width: 100%;
+            height: 200px; 
+            overflow: hidden;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+
+        .train {
+            position: absolute;
+            height: 100%;
+            left: 0;
+            transition: left 1s linear;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="train-container">
+        <img src="C:\Users\lithi\OneDrive\Pictures\Screenshots\train.png"  class="train" id="train">
+        
+    </div>
+    <br><center>
+    <h2 style="color:blue;">Click the following buttons to handle animation</h2><br>
+    <button onclick="startTrain()">Start</button>
+    <button onclick="stopTrain()">Stop</button>
+</center>
+    <script>
+        let train = document.getElementById("train");
+        let animationFrame;
+        let speed = 10; 
+
+        function moveTrain() {
+            let currentLeft = parseInt(window.getComputedStyle(train).left, 10);
+            let newLeft = currentLeft + speed;
+
+           
+            if (newLeft > train.parentElement.clientWidth) {
+                newLeft = -train.clientWidth;
+            }
+
+            train.style.left = newLeft + "px";
+            animationFrame = requestAnimationFrame(moveTrain);
+        }
+
+        function startTrain() {
+            if (!animationFrame) {
+                moveTrain();
+            }
+        }
+
+        function stopTrain() {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        }
+    </script>
+</body>
+</html>
